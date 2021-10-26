@@ -8,7 +8,9 @@ author: "Rupa Kurinchi-Vendhan"
 subtitle: "Oral + Poster"
 venue: "NeurIPS Workshop - Climate Change AI"
 slides: /pdfs/hands2015.pdf
+arxiv: https://arxiv.org/abs/2109.08770
 website: /research/wisosuper
+code: https://github.com/RupaKurinchiVendhan/WiSoSuper
 authors: "<strong>Rupa Kurinchi-Vendhan</strong>, Björn Lütjens, Ritwik Gupta, Lucien Werner, Dava Newman, Steven Low"
 ---
 An accepted paper at the [CCAI 2021](https://www.climatechange.ai/events/neurips2021.html){:target="_blank"} workshop at NeurIPS 2021. This includes further details about the efficiency of our rigid-body solver, our machine-learning tools, and some details about our data annotation process.
