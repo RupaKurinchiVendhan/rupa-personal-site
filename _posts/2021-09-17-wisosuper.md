@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "WiSoSuper: Benchmarking Super-Resolution Methods on Wind and Solar Data"
-image: /images/wisosuper_thumbnail.png
+image: images/wisosuper_thumbnail.png
 date:   2021-09-17 12:00:00 +00:00
 categories: research
 author: "Rupa Kurinchi-Vendhan"
