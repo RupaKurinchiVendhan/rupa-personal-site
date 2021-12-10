@@ -1,8 +1,22 @@
+<head>
+    <title>{{ site.name }}</title>
+  
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  
+    <meta name="author" content="{{ site.name }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  
+  </head>
+
 <html>
     <body> 
     <center> 
         <h1>WiSoSuper: Benchmarking Super-Resolution Methods on Wind and Solar Data</h1>
-        <h2><strong>Rupa Kurinchi-Vendhan</strong>, Björn Lütjens, Ritwik Gupta, Lucien Werner, Dava Newman, Steven Low</h2>
+        <h2>Rupa Kurinchi-Vendhan, Björn Lütjens, Ritwik Gupta, Lucien Werner, Dava Newman, Steven Low</h2>
     </center>
     <p>The transition to green energy grids depends on detailed wind and solar forecasts to optimize the siting and scheduling of renewable energy generation. Operational forecasts from numerical weather prediction models, however, only have a spatial resolution of 10 to 20-km, which leads to suboptimal usage and development of renewable energy farms. Weather scientists have been developing super-resolution (SR) methods to increase the resolution, but often rely on simple interpolation techniques or computationally expensive differential equation-based models. Recently, machine learning-based models, specifically the physics-informed resolution-enhancing generative adversarial network (PhIREGAN), have outperformed traditional downscaling methods. We provide a thorough and extensible benchmark of leading deep learning-based super-resolution techniques, including the enhanced super-resolution generative adversarial network (ESRGAN) and an enhanced deep super-resolution (EDSR) network, on wind and solar data. We accompany the benchmark with a novel public, processed, and machine learning-ready dataset for benchmarking super-resolution methods on wind and solar data.</p>
     </body>
@@ -16,7 +30,13 @@
             }
       
             .photo {
-                max-width: 31.333%;
+                max-width: 33.333%;
+                padding: 0 10px;
+                height: 240px;
+            }
+
+            .photo2 {
+                max-width: 33.333%;
                 padding: 0 10px;
                 height: 240px;
             }
@@ -29,7 +49,13 @@
     </head>
       
     <body>
-        <div class="images">
+        <center>
+            <div class="photo">
+                <img src="/images/3.png" alt="photo" />
+            </div>
+        </center>
+        
+        <!-- <div class="images">
             <div class="photo img">
                 <img src="/images/2.png" alt="photo" />
             </div>
@@ -41,10 +67,15 @@
             <div class="photo img">
                 <img src="/images/4.png" alt="photo" />
             </div>
-        </div>
+        </div> -->
     </body>
     <body>
         <p>Our results indicate that the perception-distortion trade-off holds for the super-resolution of wind and solar data. Our benchmark shows that CNN-based image-processing techniques (e.g., EDSR) are likely to achieve higher image similarity (in MAE, RMSE, PSNR, SSIM) while GAN-based methods achieve higher spectral similarity. We show that GAN-based models have significant applications in climate scenarios, as they most reliably generate results that match the spectral dynamics of the ground truth. Of the two GAN-based models benchmarked, ESRGAN performs best in super-resolving solar data whereas PhIREGAN performs best for wind data.</p>
-        <p>In future works, we will extend the benchmark to stochastic super-resolution techniques such as variational auto-encoders (VAEs) \cite{Kingma_2014}, normalizing flows, and diffusion-based models and metrics such as CRPS. Additionally, assessing these models on their ability to preserve temporal consistency across consecutive frames by focusing on spatiotemporal super-resolution will more comprehensively represent the physical fidelity of outputs. Validating these models on data outside of NREL's WIND Toolkit and NSRDB will also widen the scope of this study and evaluate their generalization to various locations and timespans.</p>
+        <center>
+            <div class="photo">
+                <img src="/images/4.png" alt="photo" />
+            </div>
+        </center>
+        <p>In future works, we will extend the benchmark to stochastic super-resolution techniques such as variational auto-encoders (VAEs), normalizing flows, and diffusion-based models and metrics such as CRPS. Additionally, assessing these models on their ability to preserve temporal consistency across consecutive frames by focusing on spatiotemporal super-resolution will more comprehensively represent the physical fidelity of outputs. Validating these models on data outside of NREL's WIND Toolkit and NSRDB will also widen the scope of this study and evaluate their generalization to various locations and timespans.</p>
     </body>
 </html>
