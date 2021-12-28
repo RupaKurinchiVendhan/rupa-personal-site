@@ -1,0 +1,222 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>WiSoSuper - Rupa Kurinchi-Vendhan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html"><img width=100 src="images/signature.png" alt="" /></a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="#">Research</a>
+								<ul>
+									<li><a href="develop.html">D.C.'s Solar Potental</a></li>
+									<li><a href="left-sidebar.html">WiSoSuper</a></li>
+									<li><a href="no-sidebar.html">Adaptive Charging Network</a></li>
+									<li>
+										<a href="#">Side Projects</a>
+										<ul>
+											<li><a href="#">Option 1</a></li>
+											<li><a href="#">Option 2</a></li>
+											<li><a href="#">Option 3</a></li>
+											<li><a href="#">Option 4</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a href="elements.html">Elements</a></li>
+							<!-- <li><a href="#" class="button primary">Sign Up</a></li> -->
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>WiSoSuper: Benchmarking Super-Resolution Methods on Wind and Solar Data</h2>
+							<p>Rupa Kurinchi-Vendhan, Björn Lütjens, Ritwik Gupta, Lucien Werner, Dava Newman, Steven Low</p>
+							
+						</header>
+						<div class="row gtr-150">
+							<div class="col-4 col-12-medium">
+
+								<!-- Sidebar -->
+									<section id="sidebar">
+										<section>
+											<h3>Quick Links</h3>
+											<!-- <p>This work was presented at the NeurIPS CCAI Tackling Climate Change with Machine Learning 2021 Workshop.</p> -->
+											<footer>
+												
+												<ul class="actions">
+													<li><a href="https://arxiv.org/abs/2109.08770" class="button primary fit small">Paper</a></li>
+													<li><a href="https://github.com/RupaKurinchiVendhan/WiSoSuper" class="button primary fit small">Code</a></li>
+													<li><a href="https://data.caltech.edu/records/2126" class="button primary fit small">Data</a></li>
+													
+													<!-- <li><a href="https://arxiv.org/abs/2109.08770" class="button">Paper</a></li> -->
+												</ul>
+											</footer>
+										</section>
+										<hr />
+										<section>
+											<!-- <a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a> -->
+											<h3>NeurIPS Presentation</h3>
+											<p>This work was presented at the NeurIPS CCAI Tackling Climate Change with Machine Learning 2021 Workshop.</p>
+											<footer>
+												<ul class="actions">
+													<li><a href="#" class="button">Learn More</a></li>
+												</ul>
+											</footer>
+										</section>
+									</section>
+
+							</div>
+							<div class="col-8 col-12-medium imp-medium">
+
+								<!-- Content -->
+									<section id="content">
+										<a href="#" class="image fit"><img src="images/wisosuper_thumbnail.png" alt="" /></a>
+										<p class="justify">
+											The transition to green energy grids depends on detailed wind and solar forecasts to optimize the siting and
+											scheduling of renewable energy generation. Operational forecasts from numerical weather prediction models,
+											however, only have a spatial resolution of 10 to 20-km, which leads to suboptimal usage and development of
+											renewable energy farms. Weather scientists have been developing super-resolution (SR) methods to increase
+											the
+											resolution, but often rely on simple interpolation techniques or computationally expensive differential
+											equation-based models. Recently, machine learning-based models, specifically the &nbsp;<a href="https://www.pnas.org/content/117/29/16805">physics-informed
+												resolution-enhancing generative adversarial network (PhIREGAN)</a>, have outperformed traditional downscaling
+											methods. We provide a thorough and extensible benchmark of leading deep learning-based super-resolution
+											techniques, including the &nbsp;<a href="https://arxiv.org/abs/1809.00219">enhanced super-resolution generative adversarial network (ESRGAN)</a> and an 
+											&nbsp;<a href="https://arxiv.org/abs/1707.02921">enhanced deep super-resolution (EDSR) network</a> 
+											on wind and solar data. We accompany the benchmark with a novel public,
+											processed, and machine learning-ready dataset for benchmarking super-resolution methods on wind and solar
+											data.
+										</p>
+										<h3>Narrated Overview</h3> 
+										<iframe width="787" height="445" src="https://www.youtube.com/embed/YUwmfqVKBMY">
+										</iframe>
+										<!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YUwmfqVKBMY" frameborder="0"
+											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+											allowfullscreen=""></iframe> -->
+										
+										<h3>Our Datasets</h3>
+										<p>The training data was obtained from the National Renewable Energy Laboratory's (NREL's) 
+											&nbsp;<a href="https://www.nrel.gov/grid/wind-toolkit.html">Wind Integration National Database (WIND) Toolkit</a> 
+											and the &nbsp;<a href="https://nsrdb.nrel.gov">National Solar Radiation Database (NSRDB)</a>, 
+											with a focus on the continental United States. Wind velocity data is comprised of westward (ua) 
+											and southward (va) wind components, calculated from wind speeds and directions 100-m from Earth's 
+											surface. The WIND Toolkit has a spatial resolution of 2-km x 1-hr spatiotemporal 
+											resolution. &nbsp;<a href="https://data.caltech.edu/records/2126">Our wind dataset</a> contains data sampled at a 4-hr temporal resolution 
+											(every fourth data point) for the years 2007 to 2013. Wind test data are sampled at a 
+											4-hr temporal resolution for the year 2014.</p>
+										<p>Additionally, we consider solar irradiance data from the NSRDB in terms of direct normal 
+											irradiance (DNI) and diffused horizontal irradiance (DHI) at an approximately 4-km x 1/2-hr 
+											spatiotemporal resolution. &nbsp;<a href="https://data.caltech.edu/records/2127">The solar dataset</a> produced for this 
+											work samples data at an hourly temporal resolution from  6 am to 6 pm for the years 2007 
+											to 2013. Solar test data are sampled at an hourly temporal resolution (every other data point) 
+											from 6 am to 6 pm for the years 2014 to 2018.   </p>
+										<a href="#" class="image fit"><img src="images/method.gif" alt="" /></a>
+										<h3>Sample Output</h3>
+										<p>A comparison of wind (top) and solar (bottom) outputs from each model, with 
+											reported SSIM/MSE values. While the outputs of current models are pixelated 
+											(bicubic), blurry (SR CNN), or detailed (PhIREGAN), <strong>our contributed models 
+											(EDSR, ESRGAN) are the most accurate.</strong></p>
+										<a href="#" class="image fit"><img src="images/solar.png" alt="" /></a>
+										<a href="#" class="image fit"><img src="images/wind.png" alt="" /></a>
+										<h3>Physical Analysis</h3>
+										<p class="text-justify">
+											We generated kinetic energy spectra for the data fields corresponding to each HR output, averaged over all wind 
+											test data. The PhIREGAN most closely matches the turbulent physics of the ground truth data.
+										</p>
+										<a href="#" class="image fit"><img src="images/kinetic.png" alt="" /></a>
+										<p class="text-justify">
+											For solar data, we compare super-resolved outputs by generating normalized semivariograms that show the 
+											directionally-averaged spatial autocorrelation of gradients in each solar HR output. The ESRGAN most closely matches 
+											the semivariance of the ground truth data for both DNI and DHI. This means that ESRGAN best captures the spatial 
+											correlations between pixels.
+										</p>
+										<a href="#" class="image fit"><img src="images/semivariogram.png" alt="" /></a>
+										<p class="text-justify">
+											Our results indicate that the perception-distortion trade-off holds for the super-resolution of wind and
+											solar
+											data. Our benchmark shows that CNN-based image-processing techniques (e.g., EDSR) are likely to achieve
+											higher
+											image similarity (in MAE, RMSE, PSNR, SSIM) while GAN-based methods achieve higher spectral similarity. We
+											show
+											that GAN-based models have significant applications in climate scenarios, as they most reliably generate
+											results
+											that match the spectral dynamics of the ground truth. Of the two GAN-based models benchmarked, <strong>PhIREGAN
+											performs best in super-resolving wind data</strong> whereas <strong>ESRGAN performs best for solar data</strong>.
+										</p>
+										<!-- <ul>
+											<li>Faucibus orci lobortis ac adipiscing integer.</li>
+											<li>Col accumsan arcu mi aliquet placerat.</li>
+											<li>Lobortis vestibulum ut magna tempor massa nascetur.</li>
+											<li>Blandit massa non blandit tempor interdum.</li>
+											<li>Lacinia mattis arcu nascetur lobortis.</li>
+										</ul> -->
+										<h3>Cite Our Work</h3>
+											<pre><code>@article{kurinchi2021wisosuper,
+title={WiSoSuper: Benchmarking Super-Resolution Methods on Wind and Solar Data},
+author={Kurinchi-Vendhan, Rupa and L&#252;tjens, Bj&#246;rn  and Gupta, Ritwik and Werner, Lucien and Newman, Dava},
+journal={arXiv preprint arXiv:2109.08770},
+year={2021}}
+												</code></pre>
+										<h4>Acknowledgements</h4>
+										<p class="text-justify">
+											We would like to thank the Caltech Student-Faculty Programs office and 
+											Dr. Steven Low's Netlab for funding this work. We gratefully acknowledge 
+											the computational support from Microsoft AI for Earth. We would also like 
+											to thank Karen Stengel and Michael Rossol for their assistance.
+											Data is obtained from the U.S. Department of Energy (DOE)/NREL/ALLIANCE.
+										</p>
+										<p class="text-justify">
+											Please send any questions or comments to <a href="https://rupakv.com">Rupa Kurinchi-Vendhan</a>.
+										</p>
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="https://www.linkedin.com/in/rupakurinchi-vendhan/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+						<li><a href="https://github.com/RupaKurinchiVendhan/" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="rkurinch@caltech.edu" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
