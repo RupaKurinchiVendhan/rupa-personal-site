@@ -79,76 +79,61 @@
 									<section id="content">
 										<a href="#" class="image fit"><img src="images/wisosuper_thumbnail.png" alt="" /></a>
 										<p class="justify">
-											The transition to green energy grids depends on detailed wind and solar forecasts to optimize the siting and
-											scheduling of renewable energy generation. Operational forecasts from numerical weather prediction models,
-											however, only have a spatial resolution of 10 to 20-km, which leads to suboptimal usage and development of
-											renewable energy farms. Weather scientists have been developing super-resolution (SR) methods to increase
-											the
-											resolution, but often rely on simple interpolation techniques or computationally expensive differential
-											equation-based models. Recently, machine learning-based models, specifically the &nbsp;<a href="https://www.pnas.org/content/117/29/16805">physics-informed
-												resolution-enhancing generative adversarial network (PhIREGAN)</a>, have outperformed traditional downscaling
-											methods. We provide a thorough and extensible benchmark of leading deep learning-based super-resolution
-											techniques, including the &nbsp;<a href="https://arxiv.org/abs/1809.00219">enhanced super-resolution generative adversarial network (ESRGAN)</a> and an 
-											&nbsp;<a href="https://arxiv.org/abs/1707.02921">enhanced deep super-resolution (EDSR) network</a> 
-											on wind and solar data. We accompany the benchmark with a novel public,
-											processed, and machine learning-ready dataset for benchmarking super-resolution methods on wind and solar
-											data.
+											This research builds off of the work accomplished in &nbsp;<a href="wisosuper.html">WiSoSuper</a>. WiREDiff 
+											is a novel application of diffusion models to wind speed SR which makes use of quantile regression to 
+											computationally-efficiently produce and average an interval of predicted wind velocities. We provide a 
+											benchmark of traditional deep learning-based SR techniques on wind data fields, and demonstrate that diffusion 
+											models—and the WiREDiff in particular—have significant applications in climate scenarios.
 										</p>
-										<h3>Narrated Overview</h3> 
-										<iframe width="787" height="445" src="https://www.youtube.com/embed/YUwmfqVKBMY">
-										</iframe>
-										<!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YUwmfqVKBMY" frameborder="0"
-											allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-											allowfullscreen=""></iframe> -->
-										
-										<h3>Our Datasets</h3>
-										<p>The training data was obtained from the National Renewable Energy Laboratory's (NREL's) 
-											&nbsp;<a href="https://www.nrel.gov/grid/wind-toolkit.html">Wind Integration National Database (WIND) Toolkit</a> 
-											and the &nbsp;<a href="https://nsrdb.nrel.gov">National Solar Radiation Database (NSRDB)</a>, 
-											with a focus on the continental United States. Wind velocity data is comprised of westward (ua) 
-											and southward (va) wind components, calculated from wind speeds and directions 100-m from Earth's 
-											surface. The WIND Toolkit has a spatial resolution of 2-km x 1-hr spatiotemporal 
-											resolution. &nbsp;<a href="https://data.caltech.edu/records/2126">Our wind dataset</a> contains data sampled at a 4-hr temporal resolution 
-											(every fourth data point) for the years 2007 to 2013. Wind test data are sampled at a 
-											4-hr temporal resolution for the year 2014.</p>
-										<p>Additionally, we consider solar irradiance data from the NSRDB in terms of direct normal 
-											irradiance (DNI) and diffused horizontal irradiance (DHI) at an approximately 4-km x 1/2-hr 
-											spatiotemporal resolution. &nbsp;<a href="https://data.caltech.edu/records/2127">The solar dataset</a> produced for this 
-											work samples data at an hourly temporal resolution from  6 am to 6 pm for the years 2007 
-											to 2013. Solar test data are sampled at an hourly temporal resolution (every other data point) 
-											from 6 am to 6 pm for the years 2014 to 2018.   </p>
-										<a href="#" class="image fit"><img src="images/method.gif" alt="" /></a>
+										<p>Diffusion models, originally proposed in 2015, have seen an increase in interest due to their training 
+											stability and their promising sample quality results in generative tasks. Thus, they offer potentially 
+											favorable trade-offs compared to other types of deep generative models. Diffusion models work by 
+											corrupting the training data by progressively adding Gaussian noise, slowly wiping out details in the 
+											data until it becomes pure noise, and then training a neural network to reverse this corruption process. 
+											Running this reversed corruption process synthesizes data from pure noise by gradually denoising it 
+											until a clean sample is produced. This synthesis procedure can be interpreted as an optimization 
+											algorithm that follows the gradient of the data density to produce likely samples. The notion of 
+											generating data using diffusion techniques originates from the concepts in physics, more specifically 
+											non-equilibrium thermodynamics, which deals with the compression and spread of fluids and gases based 
+											on energy. This motivates the application of diffusion-based methods to wind speed prediction. </p>
+										<p>As a stochastic process, diffusion-based methods can produce a wide distribution of potential SR outputs. 
+											Therefore, these models do not provide a way of statistically guaranteeing the degree of confidence they 
+											have in their generated results. In the context of renewable energy integration, it is important for 
+											infrastructural planners and policy-makers to be able to trust that the high resolution wind speed 
+											predictions generated by the latent diffusion model are true to reality. To this end, we can make use of 
+											quantile regression construct an pixel-wise interval around each generated pixel such that the true wind 
+											speed value corresponding to that pixel lies within the interval with a probability set by the user. This 
+											approach is far more computationally-efficient than the naive sampling method, in which each test image 
+											needs multiple sampled variations and each diffusion model inference step requires iterative denoising steps.</p>
+										<p>WireDiff is a pretrained super-resolving diffision model that is fine-tuned using quantile regression algorithms 
+											to obtain the lower and upper bounds. We then average the bounds to produce the outputs in the test set for the 
+											WiREDiff model. Thus, the WiREDiff performs the SR task by applying conformal prediction intermediately, taking 
+											an LR data field as input and generating an HR data field that is the mean of the calibrated upper and lower 
+											bounds of the output.
+										</p>
+										<h3></h3>
+										<p>The bounds for SR extracted via quantile regression are shown below. The left and right columns correspond with the lower and 
+											upper bounds of the interval, respectively, and the rightmost column contains the interval size (the difference between 
+											the lower and upper bounds).</p>
+										<a href="#" class="image fit"><img src="images/conformal_prediction.jpg" alt="" /></a>
 										<h3>Sample Output</h3>
-										<p>A comparison of wind (top) and solar (bottom) outputs from each model, with 
-											reported SSIM/MSE values. While the outputs of current models are pixelated 
-											(bicubic), blurry (SR CNN), or detailed (PhIREGAN), <strong>our contributed models 
-											(EDSR, ESRGAN) are the most accurate.</strong></p>
-										<a href="#" class="image fit"><img src="images/solar.png" alt="" /></a>
-										<a href="#" class="image fit"><img src="images/wind.png" alt="" /></a>
-										<h3>Physical Analysis</h3>
+										<p>A comparison of wind outputs from each model, with reported MSE/MAE values. While the outputs of 
+											current models are pixelated (bicubic) or high-contrast (SR CNN) <strong>our contributed diffusion model is 
+												the most accurate</strong>. The WiREDiff output has slightly more higher frequency details than the SR3.</p>
+										<a href="#" class="image fit"><img src="images/wirediff_sample_output.jpg" alt="" /></a>
 										<p class="text-justify">
-											We generated kinetic energy spectra for the data fields corresponding to each HR output, averaged over all wind 
-											test data. The PhIREGAN most closely matches the turbulent physics of the ground truth data.
-										</p>
-										<a href="#" class="image fit"><img src="images/kinetic.png" alt="" /></a>
-										<p class="text-justify">
-											For solar data, we compare super-resolved outputs by generating normalized semivariograms that show the 
-											directionally-averaged spatial autocorrelation of gradients in each solar HR output. The ESRGAN most closely matches 
-											the semivariance of the ground truth data for both DNI and DHI. This means that ESRGAN best captures the spatial 
-											correlations between pixels.
-										</p>
-										<a href="#" class="image fit"><img src="images/semivariogram.png" alt="" /></a>
-										<p class="text-justify">
-											Our results indicate that the perception-distortion trade-off holds for the super-resolution of wind and
-											solar
-											data. Our benchmark shows that CNN-based image-processing techniques (e.g., EDSR) are likely to achieve
-											higher
-											image similarity (in MAE, RMSE, PSNR, SSIM) while GAN-based methods achieve higher spectral similarity. We
-											show
-											that GAN-based models have significant applications in climate scenarios, as they most reliably generate
-											results
-											that match the spectral dynamics of the ground truth. Of the two GAN-based models benchmarked, <strong>PhIREGAN
-											performs best in super-resolving wind data</strong> whereas <strong>ESRGAN performs best for solar data</strong>.
+											These results indicate that diffusion-based models have significant applications in climate scenarios, as 
+											they more accurately and reliably generate results that match the spectral dynamics of the ground truth 
+											than traditional CNNs or interpolation techniques. In particular, our proposed model, the WiREDiff, 
+											demonstrates promising improvements upon standard SR techniques. When compared with averaging the 
+											distribution of diffusion outputs, the WiREDiff approach is less computationally expensive---inference can be 
+											accomplished with a single forward diffusion pass as opposed to running inference multiple times and 
+											averaging the generated outputs. Additionally, our benchmarking results show that the WiREDiff generates 
+											the most accurate and physically realistic SR data fields. We suspect that the WiREDiff model may outperform 
+											the diffusion model because quantile regression produces well-defined lower and upper bounds for the confidence 
+											interval of each pixel. Averaging out the lower and upper bounds provides less room for error, so on average 
+											across all the pixels, we are producing consistently smaller errors. Without this calibration, the diffusion 
+											model has higher tendencies for outliers that stray further away from the true model.
 										</p>
 										<!-- <ul>
 											<li>Faucibus orci lobortis ac adipiscing integer.</li>
@@ -157,21 +142,6 @@
 											<li>Blandit massa non blandit tempor interdum.</li>
 											<li>Lacinia mattis arcu nascetur lobortis.</li>
 										</ul> -->
-										<h3>Cite Our Work</h3>
-											<pre><code>@article{kurinchi2021wisosuper,
-title={WiSoSuper: Benchmarking Super-Resolution Methods on Wind and Solar Data},
-author={Kurinchi-Vendhan, Rupa and L&#252;tjens, Bj&#246;rn  and Gupta, Ritwik and Werner, Lucien and Newman, Dava},
-journal={arXiv preprint arXiv:2109.08770},
-year={2021}}
-												</code></pre>
-										<h4>Acknowledgements</h4>
-										<p class="text-justify">
-											We would like to thank the Caltech Student-Faculty Programs office and 
-											Dr. Steven Low's Netlab for funding this work. We gratefully acknowledge 
-											the computational support from Microsoft AI for Earth. We would also like 
-											to thank Karen Stengel and Michael Rossol for their assistance.
-											Data is obtained from the U.S. Department of Energy (DOE)/NREL/ALLIANCE.
-										</p>
 										<p class="text-justify">
 											Please send any questions or comments to <a href="https://rupakv.com">Rupa Kurinchi-Vendhan</a>.
 										</p>
