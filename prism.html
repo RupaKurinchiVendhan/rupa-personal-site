@@ -1,0 +1,1289 @@
+<!DOCTYPE HTML>
+<!--
+	Landed by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Rupa Kurinchi-Vendhan - PRISM</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* PRISM-specific styling adapted to Landed template */
+			:root {
+				--primary-color: #2196F3;
+				--primary-hover: #1976D2;
+				--text-primary: #1e293b;
+				--text-secondary: #64748b;
+				--background-primary: #ffffff;
+				--background-secondary: #f8fafc;
+				--border-color: #e2e8f0;
+				--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+				--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+			}
+			
+			/* Image compare slider styles */
+			.img-compare {
+				position: relative;
+				width: 100%;
+				height: auto;
+				user-select: none;
+				touch-action: none;
+				margin: 1.5rem 0;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: var(--shadow-md);
+				background: #000;
+				--compare-width: 100%;
+			}
+
+			.img-compare img {
+				display: block;
+				user-select: none;
+				pointer-events: none;
+			}
+
+			.img-compare .img-bottom {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: block;
+				object-fit: contain;
+				object-position: top center;
+			}
+
+			.img-compare .img-top-wrap {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				width: 50%;
+				overflow: hidden;
+				z-index: 2;
+			}
+
+			.img-compare .img-top {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: var(--compare-width);
+				min-width: var(--compare-width);
+				height: 100%;
+				display: block;
+				object-fit: contain;
+				object-position: top left;
+			}
+
+			.img-compare .img-handle {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				height: 100%;
+				width: 4px;
+				background: white;
+				cursor: ew-resize;
+				z-index: 5;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			}
+
+			.img-compare .img-handle::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 40px;
+				height: 40px;
+				background: white;
+				border-radius: 50%;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+			}
+			
+			/* Segmentation mode buttons */
+			.segmentation-mode-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1rem;
+				flex-wrap: wrap;
+				margin: 2rem 0;
+			}
+
+			.seg-mode-btn {
+				padding: 1rem 1.5rem;
+				background: var(--background-primary);
+				border: 2px solid var(--border-color);
+				border-radius: 8px;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				font-family: inherit;
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: var(--text-primary);
+				box-shadow: var(--shadow-md);
+			}
+
+			.seg-mode-btn:hover {
+				border-color: var(--primary-color);
+				background: var(--background-secondary);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			.seg-mode-btn.active {
+				border-color: var(--primary-color);
+				background: var(--primary-color);
+				color: white;
+				box-shadow: var(--shadow-lg);
+			}
+
+			.segmentation-comparison {
+				gap: 2rem;
+				display: flex;
+				flex-wrap: wrap;
+				margin-top: 2rem;
+			}
+
+			.segmentation-panel {
+				background: var(--background-primary);
+				padding: 1.5rem;
+				border-radius: 8px;
+				border: 1px solid var(--border-color);
+				box-shadow: var(--shadow-md);
+				flex: 1;
+				min-width: 300px;
+			}
+
+			.seg-compare {
+				position: relative;
+				height: auto;
+				width: 100%;
+				background: #000;
+				user-select: none;
+				touch-action: none;
+				--compare-width: 100%;
+				overflow: hidden;
+				display: block;
+				border-radius: 8px;
+			}
+
+			.seg-compare .img-bottom {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: block;
+				object-fit: contain;
+				object-position: top center;
+			}
+
+			.seg-compare .img-top-wrap {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				width: 50%;
+				overflow: hidden;
+				z-index: 2;
+			}
+
+			.seg-compare .img-top {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: var(--compare-width);
+				min-width: var(--compare-width);
+				height: 100%;
+				display: block;
+				object-fit: contain;
+				object-position: top left;
+			}
+
+			.seg-compare .img-handle {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				height: 100%;
+				width: 4px;
+				background: white;
+				cursor: ew-resize;
+				z-index: 5;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			}
+
+			.seg-compare .img-handle::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 40px;
+				height: 40px;
+				background: white;
+				border-radius: 50%;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			/* Restoration steps */
+			.restoration-steps {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.restoration-btn {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.75rem;
+				padding: 2rem 1.5rem;
+				background: var(--primary-color);
+				border: none;
+				border-radius: 8px;
+				color: white;
+				font-size: 1.2rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				box-shadow: var(--shadow-lg);
+				min-width: 180px;
+				text-align: center;
+			}
+
+			.restoration-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+				background: var(--primary-hover);
+			}
+
+			.restoration-label {
+				font-size: 1.1rem;
+				font-weight: 600;
+			}
+
+			.restoration-btn.restoration-done {
+				background: #4caf50;
+			}
+
+			.restoration-stage {
+				width: 100%;
+				max-width: 500px;
+				margin: 0 auto;
+				border-radius: 8px;
+				overflow: hidden;
+			}
+
+			.restoration-stage.img-compare {
+				position: relative;
+				height: auto;
+				width: 100%;
+				background: #000;
+				user-select: none;
+				touch-action: none;
+				--compare-width: 100%;
+				max-width: 500px;
+				margin: 0 auto;
+				overflow: hidden;
+				border-radius: 8px;
+			}
+
+			.restoration-stage.img-compare .img-bottom {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: block;
+				object-fit: contain;
+				object-position: top center;
+			}
+
+			.restoration-stage.img-compare .img-top {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: var(--compare-width);
+				min-width: var(--compare-width);
+				height: 100%;
+				display: block;
+				object-fit: contain;
+				object-position: top left;
+			}
+
+			.restoration-stage.img-compare .img-top-wrap {
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				width: 50%;
+				overflow: hidden;
+				z-index: 2;
+			}
+
+			.restoration-stage.img-compare .img-handle {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				width: 4px;
+				height: 100%;
+				background: white;
+				cursor: ew-resize;
+				transform: translateX(-50%);
+				z-index: 10;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			}
+
+			.restoration-stage.img-compare .img-handle::before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 40px;
+				height: 40px;
+				background: white;
+				border-radius: 50%;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+			}
+
+			/* Heading styles */
+			h3 {
+				text-align: center;
+			}
+			
+			/* Image styling */
+			#content .image.fit img {
+				border-radius: 8px;
+				box-shadow: var(--shadow-md);
+				transition: all 0.3s ease;
+			}
+			
+			#content .image.fit img:hover {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+			
+			/* Section improvements */
+			#sidebar section {
+				padding: 1.5rem;
+				border-radius: 8px;
+				margin-bottom: 1.5rem;
+			}
+			
+			#sidebar h3 {
+				font-weight: 600;
+				margin-top: 0;
+			}
+			
+			/* Button styling - inherit from template but add hover effects */
+			#sidebar .button {
+				background: var(--primary-color) !important;
+				border: none !important;
+				transition: all 0.2s ease !important;
+			}
+			
+			#sidebar .button:hover {
+				background: var(--primary-hover) !important;
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-md) !important;
+			}
+			
+			/* Header improvements */
+			header.major {
+				border-bottom: 2px solid var(--primary-color);
+				padding-bottom: 2rem;
+				margin-bottom: 2rem;
+			}
+			
+			header.major h2 {
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+			
+			header.major p {
+				margin: 0.25rem 0;
+			}
+			
+			/* Zoom lens for hover comparison */
+			.zoom-lens-individual {
+				position: fixed;
+				border: 3px solid rgba(255, 255, 255, 0.9);
+				border-radius: 50%;
+				background-size: cover;
+				background-repeat: no-repeat;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+				pointer-events: none;
+				z-index: 1000;
+			}
+			
+			/* GIF and video containers */
+			#content .image.fit {
+				margin: 1.5rem 0;
+			}
+			
+			/* Responsive adjustments */
+			@media screen and (max-width: 736px) {
+				#content h3 {
+					font-size: 1.3rem;
+				}
+				
+				#content p {
+					font-size: 0.95rem;
+				}
+				
+				.segmentation-comparison {
+					flex-direction: column;
+				}
+				
+				.segmentation-panel {
+					min-width: 100%;
+				}
+
+				.restoration-stage {
+					max-height: 300px;
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload landing">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			
+			<header id="header">
+				<!-- <h1 id="logo"><a href="index.html"><img width=100 src="images/signature.png" alt="" /></a></h1> -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li>
+							<a href="index.html#research">Research</a>
+							<ul>
+								<li><a href="benthiq.html">BenthIQ</a></li>
+								<li><a href="develop.html">D.C.'s Solar Potental</a></li>
+								<li><a href="wisosuper.html">WiSoSuper</a></li>
+								<li><a href="wirediff.html">WiREDiff</a></li>
+								<li><a href="prism.html">PRISM</a></li>
+							</ul>
+						</li>
+						<li><a href="index.html#talks">Talks</a></li>
+						<li><a href="index.html#teaching">Teaching</a></li>
+						<li><a href="index.html#outreach">Outreach</a></li>
+						<li><a href="pdfs/cv.pdf">CV</a></li>
+					</ul>
+				</nav>
+			</header>
+			<section id="five" class="wrapper style3 special fade">
+				<div class="container">
+				</div>
+			</section>
+			
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Seeing Through the PRISM: Controllable & Compositional Image Restoration for Science</h2>
+							<p>
+								<a href="https://rupakv.com/" target="_blank">Rupa Kurinchi-Vendhan</a><sup>*</sup>,
+								<a href="https://pratyushasharma.github.io/" target="_blank">Pratyusha Sharma</a>,
+								<a href="https://www.csail.mit.edu/person/antonio-torralba" target="_blank">Antonio Torralba</a>,
+								<a href="https://beerys.github.io/" target="_blank">Sara Beery</a>
+							</p>
+							<!-- <p><em>Published as a conference paper at ICLR 2026</em></p> -->
+						</header>
+						<div class="row gtr-150">
+							<div class="col-4 col-12-medium">
+
+								<!-- Sidebar -->
+									<section id="sidebar">
+										<!-- <section>
+											<h3>Quick Links</h3>
+											<footer>
+												<ul class="actions">
+													<li><a href="https://arxiv.org/pdf/2404.17971.pdf" class="button primary fit small">Paper</a></li>
+													<li><a href="https://github.com/RupaKurinchiVendhan/PRISM" class="button primary fit small">Code</a></li>
+													<li><a href="https://prismrestore.github.io" class="button primary fit small">Project Page</a></li>
+												</ul>
+											</footer>
+										</section> -->
+										<section>
+											<h3>Quick Links</h3>
+											<!-- <p>This work was presented at the NeurIPS CCAI Tackling Climate Change with Machine Learning 2021 Workshop.</p> -->
+											<footer>
+												
+												<ul class="actions">
+													<li><a href="https://arxiv.org/pdf/2404.17971.pdf" class="button primary fit small">Paper</a></li>
+													<li><a href="https://github.com/RupaKurinchiVendhan/PRISM" class="button primary fit small">Code</a></li>
+													
+													<!-- <li><a href="https://arxiv.org/abs/2109.08770" class="button">Paper</a></li> -->
+												</ul>
+											</footer>
+										</section>
+										<hr />
+										<section>
+											<h3>Presented at ICLR 2026</h3>
+											<p>This work was published as a conference paper at the International Conference on Learning Representations 2026.</p>
+											<footer>
+												<ul class="actions">
+													<li><a href="https://iclr.cc/Conferences/2026" class="button">ICLR 2026</a></li>
+												</ul>
+											</footer>
+										</section>
+									</section>
+
+							</div>
+							<div class="col-8 col-12-medium imp-medium">
+
+								<!-- Content -->
+									<section id="content">
+										<!-- <p>
+											PRISM learns separable, compositional embeddings of distortions, enabling robust compound restoration and zero-shot handling of unseen mixtures. It balances high fidelity with expert control, supporting both automatic restoration and prompt-driven, selective correction for scientific analysis.
+										</p> -->
+
+										<p>
+											Scientific and environmental imagery often suffer from complex mixtures of noise related to the sensor and the environment. Existing restoration methods typically remove one degradation at a time, leading to cascading artifacts, overcorrection, or loss of meaningful signal. In scientific applications, restoration must be able to simultaneously handle compound degradations while allowing experts to selectively remove subsets of distortions without erasing important features. To address these challenges, we present PRISM (Precision Restoration with Interpretable Separation of Mixtures). PRISM is a prompted conditional diffusion framework which combines compound-aware supervision over mixed degradations with a weighted contrastive disentanglement objective that aligns primitives and their mixtures in the latent space. This compositional geometry enables high-fidelity joint removal of overlapping distortions while also allowing flexible, targeted fixes through natural language prompts. Across microscopy, wildlife monitoring, remote sensing, and urban weather datasets, PRISM outperforms state-of-the-art baselines on complex compound degradations, including zero-shot mixtures not seen during training. Importantly, we show that selective restoration significantly improves downstream scientific accuracy in several domains over standard "black-box" restoration. These results establish PRISM as a generalizable and controllable framework for high-fidelity restoration in domains where scientific utility is a priority.
+										</p>
+										<a href="#" class="image fit"><img src="static/videos/teaser_2.gif" alt="PRISM Teaser" /></a>
+
+
+										<h3>Scientific and environmental images are often impacted by complex, interacting effects.</h3>
+										<p>
+											In order to do analysis, scientists often need to restore images by removing only the distortions that interfere with their analysis. Existing methods typically treat these compound effects by iteratively removing fixed categories, lacking the compositionality needed to handle real-world mixtures and often introducing cascading artifacts, overcorrection, or signal loss. Our method, PRISM, allows experts to selectively restore images by controlling which distortions to remove.
+										</p>
+										<a href="#" class="image fit"><img src="static/videos/science2.gif" alt="Science complexity" /></a>
+
+										<h3>How do we handle these compounding effects?</h3>
+										<p>
+											Our principled embedding formulation for compound degradations combines weighted contrastive learning with compound-aware supervision to create a structured, compositional latent geometry. This geometry yields separable, controllable embeddings for primitives and their mixtures, enabling automated restoration and robust performance under increasingly complex and unseen combinations.
+										</p>
+										<a href="#" class="image fit"><img src="static/videos/contrastive_trimmed.gif" alt="Contrastive learning" /></a>
+										<p>
+											On our new benchmark of compound degradations, PRISM's weighted contrastive loss closes the gap between partial and composite prompts for more robust prompt following, and enables high-fidelity restoration under complex mixtures.
+										</p>
+										<a href="#" class="image fit"><img src="static/images/results.png" alt="Results" /></a>
+
+										<h3>PRISM supports both automatic restoration and prompt-driven, selective correction for scientific analysis.</h3>
+										<p>
+											With more informative image embeddings, we can train a lightweight distortion classifier to automatically identify the distortions present in an image. This enables automatic restoration when the user does not provide a prompt, while still allowing for expert control when desired.
+										</p>
+										<a href="#" class="image fit"><img src="static/videos/modes-ezgif.com-crop.gif" alt="Restoration modes" /></a>
+										<p>
+											PRISM enables step-by-step restoration where experts can progressively correct different types of distortions. Consider this example of a drone image over a reef, where an ecologist might be interested in understanding the distribution of coral. Click the button to see how an expert can iteratively restore an image.
+										</p>
+										
+										<div style="display: flex; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; align-items: center;">
+											<div class="restoration-steps" style="flex: 0 0 200px;">
+												<button class="restoration-btn" id="restorationBtn" onclick="nextRestorationStep()">
+													<span class="restoration-label" id="restorationLabel">Unwarp</span>
+												</button>
+												<button class="restoration-btn restoration-done" id="restorationDone" style="display: none;">
+													<span class="restoration-label">Looks great!</span>
+												</button>
+											</div>
+											
+											<div style="flex: 1; min-width: 300px;">
+												<div id="restorationStage1" class="restoration-stage" style="display: block;">
+													<img src="static/images/raw.png" alt="Original distorted image" style="width: 100%; height: auto; border-radius: 8px;" loading="lazy" />
+												</div>
+												
+												<div id="restorationStage2" class="restoration-stage img-compare" style="display: none;">
+													<img class="img-bottom" src="static/images/raw.png" alt="Original image" loading="lazy" />
+													<div class="img-top-wrap">
+														<img class="img-top" src="static/images/unwarp.png" alt="After unwarp" loading="lazy" />
+													</div>
+													<div class="img-handle" role="slider" aria-label="Restoration comparison handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+												</div>
+												
+												<div id="restorationStage3" class="restoration-stage img-compare" style="display: none;">
+													<img class="img-bottom" src="static/images/unwarp.png" alt="After unwarp" loading="lazy" />
+													<div class="img-top-wrap">
+														<img class="img-top" src="static/images/uncolor.png" alt="After color fix" loading="lazy" />
+													</div>
+													<div class="img-handle" role="slider" aria-label="Restoration comparison handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+												</div>
+												
+												<div id="restorationStage4" class="restoration-stage img-compare" style="display: none;">
+													<img class="img-bottom" src="static/images/uncolor.png" alt="After color fix" loading="lazy" />
+													<div class="img-top-wrap">
+														<img class="img-top" src="static/images/unblur.png" alt="Final restored image" loading="lazy" />
+													</div>
+													<div class="img-handle" role="slider" aria-label="Restoration comparison handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+												</div>
+												
+												<p style="margin-top: 1rem; font-size: 0.9rem; color: #999;">
+													<em id="restorationHint">Here's a drone image over a reef. We want to remove the distortive effects of the waves.</em>
+												</p>
+											</div>
+										</div>
+										
+										<p>
+											While experts can interactively restore images step-by-step, PRISM can also detect and correct multiple distortions automatically.
+										</p>
+										<a href="#" class="image fit"><img src="static/images/reef_auto.png" alt="Automatic restoration" /></a>
+
+										<h3>This compositional alignment supports zero-shot generalization to unseen mixtures in the real world, supporting scientific workflows across domains.</h3>
+										<p>
+											This compositional alignment supports zero-shot generalization to unseen mixtures in the real world, supporting scientific workflows across domains. PRISM demonstrates effectiveness across microbiology imaging, camera trap monitoring, whale monitoring, and urban weather datasets.
+										</p>
+										
+										<div class="segmentation-mode-buttons">
+											<button class="seg-mode-btn active" data-domain="microbiology" onclick="switchScientificDomain('microbiology')">Microbiology</button>
+											<button class="seg-mode-btn" data-domain="camera" onclick="switchScientificDomain('camera')">Camera Traps</button>
+											<button class="seg-mode-btn" data-domain="whales" onclick="switchScientificDomain('whales')">Monitoring Whales</button>
+										</div>
+										
+										<div style="text-align: center;">
+											<img id="scientificDomainImage" src="static/images/cell.png" alt="Scientific domain example" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; margin: 1rem 0;" loading="lazy" />
+										</div>
+										
+										<p id="scientificDomainText" style="text-align: center; color: #999; margin-top: 1rem;">
+											<em>Microbiology imaging often suffers from over-fluorescence and noise due to sensor limitations. PRISM can restore fine cellular details while preserving important biological structures, without ever being explicitly trained on examples of a glowing effect.</em>
+										</p>
+
+										<h3>Current black-box restoration methods often overcorrect, and erase or distort important scientific signals that are key to analysis.</h3>
+										<p>A unique angle of this work is our emphasis on downstream task fidelity rather than perceptual aesthetics. While most restoration methods optimize for visual appeal or standard image quality metrics, PRISM shifts priorities toward scientific precision—preserving the specific signals that matter for each analytical task while removing only the distortions that interfere with analysis. Our method, PRISM, allows experts to selectively restore images by controlling which distortions to remove. Below, we compare segmentation results on microscopy data using different image qualities. We use degraded widefield images paired with high-quality structured illumination microscopy (SIM) as ground truth.</p>
+											<!-- <p>
+											A unique angle of this work is our emphasis on <strong>downstream task fidelity</strong> rather than perceptual aesthetics. While most restoration methods optimize for visual appeal or standard image quality metrics, PRISM shifts priorities toward <strong>scientific precision</strong>—preserving the specific signals that matter for each analytical task while removing only the distortions that interfere with analysis.
+										</p>
+										<p>
+											Different scientific analyses on the same data require preservation of different visual cues. We evaluate PRISM on two distinct tasks using microscopy data: (1) <strong>segmentation of clathrin-coated pits</strong>, which depends on high-frequency structural details and edge contrast, and (2) <strong>fluorescence intensity quantification</strong> within regions of interest, which is sensitive to intensity bias but tolerant to mild blurring.
+										</p>
+										<p>
+											The results show that only super-resolving the data excels for segmentation (0.58 mIoU), while denoising alone is optimal for fluorescence quantification (0.024 MSE). Combined denoising and super-resolution underperforms for both (0.48 mIoU, 0.029 MSE), highlighting the need for task-specific control.
+										</p> -->
+										
+										<div class="segmentation-mode-buttons">
+											<button class="seg-mode-btn active" data-mode="lq" onclick="switchSegmentationMode('lq')">LQ Sensor</button>
+											<button class="seg-mode-btn" data-mode="auto" onclick="switchSegmentationMode('auto')">Full Restoration</button>
+											<button class="seg-mode-btn" data-mode="manual" onclick="switchSegmentationMode('manual')">Selective Restoration</button>
+										</div>
+										
+										<div class="segmentation-comparison">
+											<div class="segmentation-panel">
+												<h4 style="text-align: center; font-weight: 600; margin-bottom: 1rem;">Microscopy Image</h4>
+												<div class="img-compare seg-compare" id="microscopyCompare">
+													<img class="img-bottom" src="static/images/hq_micro.png" alt="HQ microscopy image" loading="lazy" />
+													<div class="img-top-wrap">
+														<img class="img-top" id="microscopyOverlay" src="static/images/lq_micro.png" alt="Comparison microscopy image" loading="lazy" />
+													</div>
+													<div class="img-handle" role="slider" aria-label="Microscopy comparison handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+												</div>
+											</div>
+											
+											<div class="segmentation-panel">
+												<h4 style="text-align: center; font-weight: 600; margin-bottom: 1rem;">Segmentation Map</h4>
+												<div class="img-compare seg-compare" id="segmentationCompare">
+													<img class="img-bottom" src="static/images/hq_seg.png" alt="HQ segmentation map" loading="lazy" />
+													<div class="img-top-wrap">
+														<img class="img-top" id="segmentationOverlay" src="static/images/lq_seg.png" alt="Comparison segmentation map" loading="lazy" />
+													</div>
+													<div class="img-handle" role="slider" aria-label="Segmentation comparison handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+												</div>
+											</div>
+										</div>
+										
+										<p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #999;">
+											Click the buttons above to compare segmentation quality across different image sources. We observe that selective restoration improves segmentation of clathrin-coated pits in microscopy.
+										</p>
+
+										<!-- <h3>Camera Trap Examples</h3> -->
+										<p>
+											Let's consider an example from camera trap data. Here, we compare three images: the original low-quality (LQ) sensor image, the fully restored image using a black-box method, and the selectively restored image using PRISM.
+										</p>
+										<p style="text-align: center; font-weight: 600; margin: 1rem 0;">Can you spot the tail?</p>
+										
+<p style="text-align: center; margin-bottom: 2rem; font-size: 0.95rem; color: #999;">Hover over any region to see a magnified view across all three methods simultaneously.</p>
+										
+										<div class="zoom-compare-container" style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0; position: relative;">
+											<!-- LQ Sensor Image -->
+											<div class="zoom-compare-column" style="flex: 1; min-width: 250px; text-align: center;">
+												<div class="zoom-compare-item" style="position: relative; overflow: hidden; border-radius: 8px;">
+													<img src="static/images/raccoon_lq.png" alt="LQ Sensor Image" class="zoom-image" data-column="0" style="width: 100%; height: auto; display: block; cursor: crosshair;" loading="lazy" />
+												</div>
+												<p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.5rem;">LQ Sensor</p>
+											</div>
+											
+											<!-- Full Restoration Image -->
+											<div class="zoom-compare-column" style="flex: 1; min-width: 250px; text-align: center;">
+												<div class="zoom-compare-item" style="position: relative; overflow: hidden; border-radius: 8px;">
+													<img src="static/images/raccoon_full.png" alt="Full Restoration Image" class="zoom-image" data-column="1" style="width: 100%; height: auto; display: block; cursor: crosshair;" loading="lazy" />
+												</div>
+												<p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.5rem;">Full Restoration</p>
+											</div>
+											
+											<!-- Selective Restoration Image -->
+											<div class="zoom-compare-column" style="flex: 1; min-width: 250px; text-align: center;">
+												<div class="zoom-compare-item" style="position: relative; overflow: hidden; border-radius: 8px;">
+													<img src="static/images/raccoon_partial.png" alt="Selective Restoration Image" class="zoom-image" data-column="2" style="width: 100%; height: auto; display: block; cursor: crosshair;" loading="lazy" />
+												</div>
+												<p style="font-weight: 600; font-size: 0.9rem; margin-top: 0.5rem;">Selective Restoration</p>
+											</div>
+										</div>
+										
+										<p style="text-align: center; color: #999;">
+											<em>Notice how selective restoration preserves the fine details needed for accurate species classification while avoiding overcorrection artifacts.</em>
+										</p>
+
+										<h3>How does this translate across downstream tasks?</h3>
+										<p style="text-align: center; margin-bottom: 1.5rem;">
+											Different scientific analyses on the same data require preservation of different visual cues. We show that selective restoration achieves significantly better performance than blanket restoration methods.
+										</p>
+										
+										<div style="display: flex; gap: 2rem; flex-wrap: wrap; margin: 2rem 0; justify-content: center;">
+											<div style="flex: 0 0 380px; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+												<h4 style="text-align: center; font-weight: 600; margin-bottom: 1rem; color: #2196F3;">Segmentation Performance (mIoU)</h4>
+												<table style="width: 100%; border-collapse: collapse;">
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">LQ Sensor</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #1e293b;">0.32</td>
+													</tr>
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">Denoising Only</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #1e293b;">0.44</td>
+													</tr>
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">Super-Resolution</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #2196F3; font-weight: 600;">0.58</td>
+													</tr>
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">Combined</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #1e293b;">0.48</td>
+													</tr>
+													<tr>
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">PRISM (Selective)</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #4caf50; font-weight: 600;">0.56</td>
+													</tr>
+												</table>
+											</div>
+											
+											<div style="flex: 0 0 380px; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+												<h4 style="text-align: center; font-weight: 600; margin-bottom: 1rem; color: #2196F3;">Fluorescence Quantification (MSE)</h4>
+												<table style="width: 100%; border-collapse: collapse;">
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">LQ Sensor</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #1e293b;">0.062</td>
+													</tr>
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">Denoising Only</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #2196F3; font-weight: 600;">0.024</td>
+													</tr>
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">Super-Resolution</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #1e293b;">0.038</td>
+													</tr>
+													<tr style="border-bottom: 1px solid #e2e8f0;">
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">Combined</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #1e293b;">0.029</td>
+													</tr>
+													<tr>
+														<td style="padding: 0.75rem 0.5rem; font-weight: 600; color: #1e293b;">PRISM (Selective)</td>
+														<td style="padding: 0.75rem 0.5rem; text-align: right; color: #4caf50; font-weight: 600;">0.025</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+
+										<p style="text-align: center; margin: 2rem 1rem; font-size: 0.95rem; color: #999; line-height: 1.6;">
+											<em>Super-resolution alone excels for segmentation but harms intensity quantification. Denoising alone is optimal for fluorescence but reduces structural detail for segmentation. Combined methods underperform on both tasks. PRISM's selective approach achieves near-optimal performance across both tasks by allowing experts to choose which degradations to address.</em>
+										</p>
+
+										<h3>Cite Our Work</h3>
+											<pre><code>@inproceedings{kurinchi2026prism,
+title={Seeing Through the PRISM: Controllable & Compositional Image Restoration for Science},
+author={Kurinchi-Vendhan, Rupa and Sharma, Pratyusha and Torralba, Antonio and Beery, Sara},
+booktitle={International Conference on Learning Representations (ICLR)},
+year={2026}
+}</code></pre>
+
+										<h3>Conclusions</h3>
+										<p>
+											PRISM represents a fundamental shift in how we approach image restoration for scientific applications. We practically ground this work by first prioritizing corrections over real-world <em>mixtures</em> of degradations. Rather than treating restoration as a one-size-fits-all problem optimized for perceptual quality, we demonstrate that <strong>downstream task fidelity and expert control are essential</strong> for scientific imaging workflows.
+										</p>
+										
+										<!-- Key contributions boxes -->
+										<div style="display: flex; gap: 2rem; flex-wrap: wrap; margin: 2rem 0;">
+											<div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2196F3;">
+												<h4 style="color: #2196F3; font-weight: 600; margin-bottom: 1rem;">Compositional Understanding</h4>
+												<p style="margin: 0; font-size: 0.9rem; color: #999; text-align: left;">
+													Our weighted contrastive learning approach creates separable, compositional embeddings that enable robust handling of compound degradations and zero-shot generalization to unseen distortion mixtures in real-world scenarios.
+												</p>
+											</div>
+											
+											<div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2196F3;">
+												<h4 style="color: #2196F3; font-weight: 600; margin-bottom: 1rem;">Expert-in-the-Loop Workflow</h4>
+												<p style="margin: 0; font-size: 0.9rem; color: #999; text-align: left;">
+													By supporting both automatic distortion detection and prompt-driven selective restoration, PRISM balances efficiency with expert control, enabling scientists to make informed decisions about which corrections serve their analytical goals.
+												</p>
+											</div>
+										</div>
+										
+										<div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+											<div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #4caf50;">
+												<h4 style="color: #388e3c; font-weight: 600; margin-bottom: 1rem;">Cross-Domain Generalization</h4>
+												<p style="margin: 0; font-size: 0.9rem; color: #999; text-align: left;">
+													PRISM successfully handles diverse scientific domains—from microscopy to wildlife monitoring to underwater imaging—demonstrating that compositional understanding of distortions enables broad applicability without domain-specific retraining.
+												</p>
+											</div>
+											
+											<div style="flex: 1; min-width: 300px; background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #4caf50;">
+												<h4 style="color: #388e3c; font-weight: 600; margin-bottom: 1rem;">Task-Aware Restoration</h4>
+												<p style="margin: 0; font-size: 0.9rem; color: #999; text-align: left;">
+													Different scientific analyses require preservation of different visual cues. PRISM enables selective restoration where experts control which distortions to remove based on their specific analytical needs, rather than applying blanket correction.
+												</p>
+											</div>
+										</div>
+										
+										<p style="margin-top: 2rem;">
+											PRISM enables scientists to extract maximum analytical value from complex, degraded imagery while maintaining confidence in their results. This approach opens new possibilities for scientific discovery in domains where image quality has traditionally limited analysis.
+										</p>
+
+										
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer -->
+			<section id="five" class="wrapper style2 special fade">
+				<ul class="copyright">
+					&copy; Rupa Kurinchi-Vendhan. All rights reserved. Design: HTML5 UP
+				</ul>
+			</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>		
+		<script>
+			// PRISM-specific interactive elements
+			
+			// Image comparison slider functionality
+			function setupImageCompare(containerId) {
+				const container = document.getElementById(containerId);
+				if (!container) return;
+				
+				const topWrap = container.querySelector('.img-top-wrap');
+				const bottomImg = container.querySelector('.img-bottom');
+				const handle = container.querySelector('.img-handle');
+				if (!topWrap || !handle || !bottomImg) return;
+				
+				let dragging = false;
+				
+				// Set top image width to match container and compute height from bottom image aspect ratio
+				function updateLayout() {
+					const rect = container.getBoundingClientRect();
+					// Set top image width to container width
+					container.style.setProperty('--compare-width', rect.width + 'px');
+					
+					// Compute container height from bottom image's aspect ratio
+					if (bottomImg.naturalWidth && bottomImg.naturalHeight) {
+						const aspectRatio = bottomImg.naturalHeight / bottomImg.naturalWidth;
+						const height = Math.round(rect.width * aspectRatio);
+						container.style.height = height + 'px';
+					}
+				}
+				
+				function setPosition(clientX) {
+					const rect = container.getBoundingClientRect();
+					let x = clientX - rect.left;
+					x = Math.max(0, Math.min(x, rect.width));
+					const percent = (x / rect.width) * 100;
+					topWrap.style.width = percent + '%';
+					handle.style.left = percent + '%';
+				}
+				
+				function onDown(e) {
+					dragging = true;
+					const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+					setPosition(clientX);
+					e.preventDefault();
+				}
+				
+				function onMove(e) {
+					if (!dragging) return;
+					const clientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+					setPosition(clientX);
+				}
+				
+				function onUp() {
+					dragging = false;
+				}
+				
+				handle.addEventListener('mousedown', onDown);
+				handle.addEventListener('touchstart', onDown);
+				document.addEventListener('mousemove', onMove);
+				document.addEventListener('touchmove', onMove);
+				document.addEventListener('mouseup', onUp);
+				document.addEventListener('touchend', onUp);
+				
+				// Also allow clicking on the container to move slider
+				container.addEventListener('click', function(e) {
+					if (e.target === handle) return;
+					const clientX = e.clientX;
+					setPosition(clientX);
+				});
+				
+				// Initialize layout - wait for images to load if needed
+				if (bottomImg.complete) {
+					updateLayout();
+				} else {
+					bottomImg.addEventListener('load', updateLayout);
+				}
+				
+				window.addEventListener('resize', updateLayout);
+			}
+			
+			// Apply layout calculation to single-image stages (for consistency with comparison sliders)
+			function setupSingleImageLayout(stageId) {
+				const stage = document.getElementById(stageId);
+				if (!stage) return;
+				
+				const img = stage.querySelector('img');
+				if (!img) return;
+				
+				function updateLayout() {
+					const rect = stage.getBoundingClientRect();
+					if (img.naturalWidth && img.naturalHeight) {
+						const aspectRatio = img.naturalHeight / img.naturalWidth;
+						const height = Math.round(rect.width * aspectRatio);
+						stage.style.height = height + 'px';
+					}
+				}
+				
+				if (img.complete) {
+					updateLayout();
+				} else {
+					img.addEventListener('load', updateLayout);
+				}
+				
+				window.addEventListener('resize', updateLayout);
+			}
+			
+		// ===== Domain Switching =====
+		const domainData = {
+			microbiology: {
+				image: 'static/images/cell.png',
+				text: 'Microbiology imaging often suffers from over-fluorescence and noise due to sensor limitations. PRISM can restore fine cellular details while preserving important biological structures, without ever being explicitly trained on examples of a glowing effect.'
+			},
+			camera: {
+				image: 'static/images/camera.png',
+				text: 'Wildlife camera traps often capture low-quality images due to limited sensor capabilities and challenging lighting conditions. PRISM can enhance these images while preserving the diagnostic features needed for species classification and behavior analysis.'
+			},
+			whales: {
+				image: 'static/images/whale.png',
+				text: 'Marine monitoring of whales involves challenging conditions with atmospheric distortions, water reflections, and sensor noise. PRISM enables precise restoration for accurate population tracking and behavioral studies.'
+			}
+		};
+		
+		function switchScientificDomain(domain) {
+			const data = domainData[domain];
+			if (!data) return;
+			
+			// Update image
+			const img = document.getElementById('scientificDomainImage');
+			if (img) img.src = data.image;
+			
+			// Update text
+			const text = document.getElementById('scientificDomainText');
+			if (text) text.textContent = data.text;
+			
+			// Update button states
+			document.querySelectorAll('[data-domain]').forEach(btn => {
+				btn.classList.toggle('active', btn.getAttribute('data-domain') === domain);
+			});
+		}
+		
+		// ===== Restoration Steps =====
+		let currentRestorationStep = 1;
+		
+		function nextRestorationStep() {
+			// Hide current stage
+			const currentStage = document.getElementById('restorationStage' + currentRestorationStep);
+			if (currentStage) currentStage.style.display = 'none';
+			
+			// Move to next
+			currentRestorationStep++;
+			if (currentRestorationStep > 4) {
+				currentRestorationStep = 1;
+				// Show done button
+				const doneBtn = document.getElementById('restorationDone');
+				const mainBtn = document.getElementById('restorationBtn');
+				if (doneBtn && mainBtn) {
+					doneBtn.style.display = 'block';
+					mainBtn.style.display = 'none';
+					setTimeout(() => {
+						doneBtn.style.display = 'none';
+						mainBtn.style.display = 'block';
+						currentRestorationStep = 1;
+					}, 2000);
+				}
+				// Show stage 1
+				const stage1 = document.getElementById('restorationStage1');
+				if (stage1) {
+					stage1.style.display = 'block';
+					setupSingleImageLayout('restorationStage1');
+				}
+				return;
+			}
+			
+			// Show next stage
+			const nextStage = document.getElementById('restorationStage' + currentRestorationStep);
+			if (nextStage) {
+				nextStage.style.display = 'block';
+				// Setup image compare if this is a compare stage
+				if (currentRestorationStep > 1) {
+					setupImageCompare('restorationStage' + currentRestorationStep);
+				}
+			}
+			
+			// Update button label
+			const labels = ['Unwarp', 'Remove Color Cast', 'Remove Blur', 'Looks great!'];
+			const label = document.getElementById('restorationLabel');
+			if (label) label.textContent = labels[currentRestorationStep - 1] || 'Next';
+			
+			const hints = [
+				'Here\'s a drone image over a reef. We want to remove the distortive effects of the waves.',
+				'The image still has color distortion from the water. Let\'s correct that.',
+				'Now there\'s some blur from motion. Let\'s remove that.',
+				'Much better! The restoration is complete.'
+			];
+			const hint = document.getElementById('restorationHint');
+			if (hint) hint.textContent = hints[currentRestorationStep - 1] || 'Done!';
+		}
+		
+		// ===== Segmentation Mode Switching =====
+		const segmentationData = {
+			lq: {
+				micro: 'static/images/lq_micro.png',
+				seg: 'static/images/lq_seg.png'
+			},
+			auto: {
+				micro: 'static/images/full_micro.png',
+				seg: 'static/images/full_seg.png'
+			},
+			manual: {
+				micro: 'static/images/partial_micro.png',
+				seg: 'static/images/partial_seg.png'
+			}
+		};
+		
+		function switchSegmentationMode(mode) {
+			const data = segmentationData[mode];
+			if (!data) return;
+			
+			// Update images
+			const microImg = document.getElementById('microscopyOverlay');
+			const segImg = document.getElementById('segmentationOverlay');
+			
+			if (microImg) microImg.src = data.micro;
+			if (segImg) segImg.src = data.seg;
+			
+			// Update button states
+			document.querySelectorAll('[data-mode]').forEach(btn => {
+				btn.classList.toggle('active', btn.getAttribute('data-mode') === mode);
+			});
+			
+			// Reinitialize compare sliders
+			setTimeout(() => {
+				setupImageCompare('microscopyCompare');
+				setupImageCompare('segmentationCompare');
+			}, 100);
+		}
+		
+		// ===== Interactive Zoom Lens for Camera Trap Examples =====
+		function setupZoomLens() {
+			const container = document.querySelector('.zoom-compare-container');
+			if (!container) return;
+			
+			const zoomImages = container.querySelectorAll('.zoom-image');
+			if (zoomImages.length === 0) return;
+			
+			const zoomLevel = 2.5; // Magnification level
+			const lensSize = 180; // Size of zoom circle in pixels
+			
+			let allImagesData = [];
+			let lensElements = [];
+			
+			// Create a zoom lens for each image
+			zoomImages.forEach((img, index) => {
+				const lens = document.createElement('div');
+				lens.className = 'zoom-lens-individual';
+				lens.style.display = 'none';
+				lens.style.position = 'fixed';
+				lens.style.borderRadius = '50%';
+				lens.style.pointerEvents = 'none';
+				lens.style.zIndex = '1000';
+				document.body.appendChild(lens);
+				
+				allImagesData[index] = {
+					element: img,
+					src: img.src,
+					rect: null,
+					lens: lens
+				};
+				
+				lensElements.push(lens);
+			});
+			
+			function updateImageRects() {
+				allImagesData.forEach(data => {
+					data.rect = data.element.getBoundingClientRect();
+				});
+			}
+			
+			function showAllZoomLenses(e, hoveredImageIndex) {
+				updateImageRects();
+				
+				const hoveredData = allImagesData[hoveredImageIndex];
+				const hoveredRect = hoveredData.rect;
+				
+				// Calculate mouse position relative to the hovered image
+				const mouseX = e.clientX - hoveredRect.left;
+				const mouseY = e.clientY - hoveredRect.top;
+				
+				// Calculate the percentage position in the image
+				const xPercent = (mouseX / hoveredRect.width) * 100;
+				const yPercent = (mouseY / hoveredRect.height) * 100;
+				
+				// Show zoom lens for each image at the corresponding position
+				allImagesData.forEach((data, index) => {
+					const rect = data.rect;
+					
+					// Calculate the corresponding pixel position in this image
+					const correspondingX = (xPercent / 100) * rect.width;
+					const correspondingY = (yPercent / 100) * rect.height;
+					
+					// Position lens centered on the corresponding point
+					const lensLeft = rect.left + correspondingX;
+					const lensTop = rect.top + correspondingY;
+					
+					// Clamp lens position to stay within the image bounds
+					const clampedLeft = Math.max(rect.left + lensSize / 2, Math.min(rect.right - lensSize / 2, lensLeft));
+					const clampedTop = Math.max(rect.top + lensSize / 2, Math.min(rect.bottom - lensSize / 2, lensTop));
+					
+					data.lens.style.left = (clampedLeft - lensSize / 2) + 'px';
+					data.lens.style.top = (clampedTop - lensSize / 2) + 'px';
+					data.lens.style.width = lensSize + 'px';
+					data.lens.style.height = lensSize + 'px';
+					data.lens.style.display = 'block';
+					
+					// Calculate the background position for the magnified view
+					// Center the magnified image on the corresponding point
+					const bgX = -(correspondingX * zoomLevel - lensSize / 2);
+					const bgY = -(correspondingY * zoomLevel - lensSize / 2);
+					
+					data.lens.style.backgroundImage = `url(${data.src})`;
+					data.lens.style.backgroundSize = `${rect.width * zoomLevel}px ${rect.height * zoomLevel}px`;
+					data.lens.style.backgroundPosition = `${bgX}px ${bgY}px`;
+					
+					// Highlight the lens on the hovered image
+					if (index === hoveredImageIndex) {
+						data.lens.style.borderColor = 'rgba(33, 150, 243, 0.9)';
+						data.lens.style.borderWidth = '3px';
+						data.lens.style.boxShadow = '0 8px 32px rgba(33, 150, 243, 0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.8)';
+					} else {
+						data.lens.style.borderColor = 'rgba(255, 255, 255, 0.9)';
+						data.lens.style.borderWidth = '3px';
+						data.lens.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 0 2px rgba(0, 0, 0, 0.1)';
+					}
+				});
+			}
+			
+			function hideAllZoomLenses() {
+				lensElements.forEach(lens => {
+					lens.style.display = 'none';
+				});
+			}
+			
+			// Attach event listeners to each image
+			zoomImages.forEach((img, index) => {
+				img.addEventListener('mouseenter', () => {
+					updateImageRects();
+				});
+				
+				img.addEventListener('mousemove', (e) => {
+					showAllZoomLenses(e, index);
+				});
+				
+				img.addEventListener('mouseleave', () => {
+					hideAllZoomLenses();
+				});
+			});
+			
+			// Update rects on window resize
+			let resizeTimeout;
+			window.addEventListener('resize', () => {
+				clearTimeout(resizeTimeout);
+				resizeTimeout = setTimeout(() => {
+					updateImageRects();
+					hideAllZoomLenses();
+				}, 100);
+			});
+			
+			// Initial rect calculation
+			updateImageRects();
+		}
+		
+		// ===== Initialization =====
+		document.addEventListener('DOMContentLoaded', function() {
+			// Initialize zoom lenses
+			setupZoomLens();
+			
+			// Initialize all image comparisons
+			const compareContainers = document.querySelectorAll('.img-compare');
+			compareContainers.forEach((container, index) => {
+				const id = container.id || 'compare-' + index;
+				if (!container.id) container.id = id;
+				setupImageCompare(id);
+			});
+			
+			// Initialize layout for first restoration stage
+			setupSingleImageLayout('restorationStage1');
+			
+			// Set initial domain and mode
+			switchScientificDomain('microbiology');
+			switchSegmentationMode('lq');
+		});
+		
+		// Smooth animations for images on scroll
+		if ('IntersectionObserver' in window) {
+			const imageObserver = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.style.opacity = '1';
+						entry.target.style.transform = 'translateY(0)';
+					}
+				});
+			}, {
+				threshold: 0.1
+			});
+			
+			// Observe all images in content
+			document.querySelectorAll('#content .image img').forEach(img => {
+				img.style.opacity = '0';
+				img.style.transform = 'translateY(20px)';
+				img.style.transition = 'all 0.6s ease';
+				imageObserver.observe(img);
+			});
+		}
+		</script>
+	</body>
+</html>
